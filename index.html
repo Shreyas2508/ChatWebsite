@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 60px;
+            padding: 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById("message-input");
+            var messageText = messageInput.value.trim();
+
+            if (messageText !== "") {
+                displayMessage("You", messageText);
+                messageInput.value = "";
+            }
+        }
+
+        function displayMessage(sender, message) {
+            var chatBox = document.getElementById("chat-box");
+            var messageElement = document.createElement("div");
+            messageElement.classList.add("message");
+
+            var senderElement = document.createElement("strong");
+            senderElement.textContent = sender + ": ";
+            messageElement.appendChild(senderElement);
+
+            var textElement = document.createElement("span");
+            textElement.textContent = message;
+            messageElement.appendChild(textElement);
+
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
+    
